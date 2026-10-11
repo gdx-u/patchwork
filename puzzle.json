@@ -1,0 +1,600 @@
+{
+    "version": 1,
+    "title": "Jumbo Patchwork #1",
+    "rows": 15,
+    "cols": 15,
+    "horizontals": [
+        {
+            "label": "A",
+            "clue": "The world's longest venomous snake (two words) // Striped mammals",
+            "length": 15
+        },
+        {
+            "label": "B",
+            "clue": "The D of A.D. // A space in front of a public building where people walk to different paths, gates or platforms",
+            "length": 15
+        },
+        {
+            "label": "C",
+            "clue": "Permit entry (two words) // The group which controls a country",
+            "length": 15
+        },
+        {
+            "label": "D",
+            "clue": "Queen Elizabeth II, for example // The largest button on a standard keyboard",
+            "length": 15
+        },
+        {
+            "label": "E",
+            "clue": "Smells // Shuffle",
+            "length": 15
+        },
+        {
+            "label": "F",
+            "clue": "Corrupts one's character // Violation of trust",
+            "length": 15
+        },
+        {
+            "label": "G",
+            "clue": "Relating to the solar system // The clear covering of the eye",
+            "length": 15
+        },
+        {
+            "label": "H",
+            "clue": "A character who commands the audience's sympathy while lacking traditional heroic qualities // Strips of fabric used for tying packages",
+            "length": 15
+        },
+        {
+            "label": "I",
+            "clue": "Having the skill to create // A measure of randomness",
+            "length": 15
+        },
+        {
+            "label": "J",
+            "clue": "Extreme // Embarrass",
+            "length": 15
+        },
+        {
+            "label": "K",
+            "clue": "Businessperson // Long, often cylindrical, piece of metal",
+            "length": 15
+        },
+        {
+            "label": "L",
+            "clue": "Secret plan (two words) // Play a part",
+            "length": 15
+        },
+        {
+            "label": "M",
+            "clue": "Freeing of impurities // Pleasantly brittle",
+            "length": 15
+        },
+        {
+            "label": "N",
+            "clue": "The world's leading producer of Yerba Mate // Stinks",
+            "length": 15
+        },
+        {
+            "label": "O",
+            "clue": "Angular offset // True",
+            "length": 15
+        }
+    ],
+    "patches": [
+        {
+            "label": "1",
+            "clue": "Politically organized community",
+            "length": 7,
+            "cells": [
+                [0, 0],
+                [0, 1],
+                [0, 2],
+                [0, 3],
+                [1, 0],
+                [1, 1],
+                [1, 2]
+            ]
+        },
+        {
+            "label": "2",
+            "clue": "Creating a piece of terminology",
+            "length": 7,
+            "cells": [
+                [0, 4],
+                [0, 5],
+                [1, 3],
+                [1, 4],
+                [1, 5],
+                [2, 4],
+                [2, 5]
+            ]
+        },
+        {
+            "label": "3",
+            "clue": "Openly and unashamedly bold",
+            "length": 6,
+            "cells": [
+                [0, 6],
+                [0, 7],
+                [0, 8],
+                [0, 9],
+                [0, 10],
+                [1, 8]
+            ]
+        },
+        {
+            "label": "4",
+            "clue": "Birmingham in slang",
+            "length": 4,
+            "cells": [
+                [0, 11],
+                [0, 12],
+                [1, 11],
+                [2, 11]
+            ]
+        },
+        {
+            "label": "5",
+            "clue": "Approve",
+            "length": 6,
+            "cells": [
+                [0, 13],
+                [0, 14],
+                [1, 13],
+                [1, 14],
+                [2, 13],
+                [2, 14]
+            ]
+        },
+        {
+            "label": "6",
+            "clue": "Small, sheltered coastal inlet or bay",
+            "length": 4,
+            "cells": [
+                [1, 6],
+                [1, 7],
+                [2, 7],
+                [2, 8]
+            ]
+        },
+        {
+            "label": "7",
+            "clue": "Scam",
+            "length": 3,
+            "cells": [
+                [1, 9],
+                [1, 10],
+                [2, 10]
+            ]
+        },
+        {
+            "label": "8",
+            "clue": "A steel rod inside of concrete to add tensile strength",
+            "length": 5,
+            "cells": [
+                [1, 12],
+                [2, 12],
+                [3, 12],
+                [3, 13],
+                [3, 14]
+            ]
+        },
+        {
+            "label": "9",
+            "clue": "Drink commonly sold by children in stands",
+            "length": 8,
+            "cells": [
+                [2, 0],
+                [2, 1],
+                [3, 0],
+                [3, 1],
+                [3, 2],
+                [4, 0],
+                [5, 0],
+                [5, 1]
+            ]
+        },
+        {
+            "label": "10",
+            "clue": "Jeweled headpieces typically worn by women",
+            "length": 6,
+            "cells": [
+                [2, 2],
+                [2, 3],
+                [3, 3],
+                [3, 4],
+                [4, 4],
+                [4, 5]
+            ]
+        },
+        {
+            "label": "11",
+            "clue": "A natural earth pigment made from clay and iron oxide",
+            "length": 5,
+            "cells": [
+                [2, 6],
+                [3, 5],
+                [3, 6],
+                [4, 6],
+                [4, 7]
+            ]
+        },
+        {
+            "label": "12",
+            "clue": "One who tries to get from one point to another as fast as possible",
+            "length": 5,
+            "cells": [
+                [2, 9],
+                [3, 9],
+                [3, 10],
+                [3, 11],
+                [4, 10]
+            ]
+        },
+        {
+            "label": "13",
+            "clue": "Common emergency replacement kept in the boot of a car (two words)",
+            "length": 9,
+            "cells": [
+                [3, 7],
+                [3, 8],
+                [4, 8],
+                [4, 9],
+                [5, 8],
+                [5, 9],
+                [6, 8],
+                [7, 8],
+                [8, 8]
+            ]
+        },
+        {
+            "label": "14",
+            "clue": "Indo-aryan ethnic group",
+            "length": 6,
+            "cells": [
+                [4, 1],
+                [4, 2],
+                [4, 3],
+                [5, 3],
+                [6, 3],
+                [7, 3]
+            ]
+        },
+        {
+            "label": "15",
+            "clue": "Weeping _____, monster who only moves when not observed",
+            "length": 5,
+            "cells": [
+                [4, 11],
+                [4, 12],
+                [4, 13],
+                [4, 14],
+                [5, 14]
+            ]
+        },
+        {
+            "label": "16",
+            "clue": "More eccentric or crazy",
+            "length": 7,
+            "cells": [
+                [5, 2],
+                [6, 2],
+                [7, 2],
+                [8, 2],
+                [8, 3],
+                [9, 3],
+                [9, 4]
+            ]
+        },
+        {
+            "label": "17",
+            "clue": "Rage internally",
+            "length": 6,
+            "cells": [
+                [5, 4],
+                [5, 5],
+                [6, 4],
+                [6, 5],
+                [7, 4],
+                [7, 5]
+            ]
+        },
+        {
+            "label": "18",
+            "clue": "Traditional Indian women's garment",
+            "length": 4,
+            "cells": [
+                [5, 6],
+                [6, 6],
+                [7, 6],
+                [8, 6]
+            ]
+        },
+        {
+            "label": "19",
+            "clue": "Pamphlet that contains information about an event",
+            "length": 8,
+            "cells": [
+                [5, 7],
+                [6, 7],
+                [7, 7],
+                [8, 7],
+                [9, 6],
+                [9, 7],
+                [10, 6],
+                [10, 7]
+            ]
+        },
+        {
+            "label": "20",
+            "clue": "Steal from",
+            "length": 3,
+            "cells": [
+                [5, 10],
+                [6, 10],
+                [7, 10]
+            ]
+        },
+        {
+            "label": "21",
+            "clue": "Random chat app with over 10,000,000 downloads",
+            "length": 4,
+            "cells": [
+                [5, 11],
+                [5, 12],
+                [5, 13],
+                [6, 11]
+            ]
+        },
+        {
+            "label": "22",
+            "clue": "Two-dimensional, mathematically",
+            "length": 6,
+            "cells": [
+                [6, 0],
+                [6, 1],
+                [7, 0],
+                [7, 1],
+                [8, 0],
+                [8, 1]
+            ]
+        },
+        {
+            "label": "23",
+            "clue": "The world's largest automated research marketplace",
+            "length": 4,
+            "cells": [
+                [6, 9],
+                [7, 9],
+                [8, 9],
+                [8, 10]
+            ]
+        },
+        {
+            "label": "24",
+            "clue": "Prohibited action (two words, hyphenated)",
+            "length": 4,
+            "cells": [
+                [6, 12],
+                [7, 12],
+                [7, 13],
+                [8, 12]
+            ]
+        },
+        {
+            "label": "25",
+            "clue": "Simple",
+            "length": 4,
+            "cells": [
+                [6, 13],
+                [6, 14],
+                [7, 14],
+                [8, 14]
+            ]
+        },
+        {
+            "label": "26",
+            "clue": "Wild bush with prickly stems",
+            "length": 5,
+            "cells": [
+                [7, 11],
+                [8, 11],
+                [9, 11],
+                [9, 12],
+                [10, 11]
+            ]
+        },
+        {
+            "label": "27",
+            "clue": "Increases in gradient",
+            "length": 8,
+            "cells": [
+                [8, 4],
+                [8, 5],
+                [9, 5],
+                [10, 4],
+                [10, 5],
+                [11, 4],
+                [12, 4],
+                [12, 5]
+            ]
+        },
+        {
+            "label": "28",
+            "clue": "Flying creatures commonly mistaken as dinosaurs",
+            "length": 12,
+            "cells": [
+                [8, 13],
+                [9, 13],
+                [9, 14],
+                [10, 12],
+                [10, 13],
+                [10, 14],
+                [11, 12],
+                [11, 13],
+                [11, 14],
+                [12, 14],
+                [13, 13],
+                [13, 14]
+            ]
+        },
+        {
+            "label": "29",
+            "clue": "The day which brought swans a-swimming in the Christmas song",
+            "length": 7,
+            "cells": [
+                [9, 0],
+                [9, 1],
+                [9, 2],
+                [10, 0],
+                [10, 1],
+                [10, 2],
+                [11, 0]
+            ]
+        },
+        {
+            "label": "30",
+            "clue": "Excavation site",
+            "length": 4,
+            "cells": [
+                [9, 8],
+                [9, 9],
+                [10, 8],
+                [10, 9]
+            ]
+        },
+        {
+            "label": "31",
+            "clue": "Rapper famous for the albums \"The Red Light District\" and \"Theater of the Mind\"",
+            "length": 8,
+            "cells": [
+                [9, 10],
+                [10, 10],
+                [11, 10],
+                [11, 11],
+                [12, 9],
+                [12, 10],
+                [12, 11],
+                [13, 9]
+            ]
+        },
+        {
+            "label": "32",
+            "clue": "A statement with a double meaning presented as a puzzle to be solved",
+            "length": 6,
+            "cells": [
+                [10, 3],
+                [11, 1],
+                [11, 2],
+                [11, 3],
+                [12, 1],
+                [12, 2]
+            ]
+        },
+        {
+            "label": "33",
+            "clue": "Voldemort's snake in the Harry Potter series",
+            "length": 6,
+            "cells": [
+                [11, 5],
+                [11, 6],
+                [11, 7],
+                [12, 6],
+                [12, 7],
+                [13, 6]
+            ]
+        },
+        {
+            "label": "34",
+            "clue": "Enter into combat",
+            "length": 6,
+            "cells": [
+                [11, 8],
+                [11, 9],
+                [12, 8],
+                [13, 8],
+                [14, 8],
+                [14, 9]
+            ]
+        },
+        {
+            "label": "35",
+            "clue": "The symbolism of a reward in contrast to the \"stick\" which is a punishment",
+            "length": 6,
+            "cells": [
+                [12, 0],
+                [13, 0],
+                [13, 1],
+                [14, 0],
+                [14, 1],
+                [14, 2]
+            ]
+        },
+        {
+            "label": "36",
+            "clue": "_____ J, played by Will Smith in Men in Black",
+            "length": 5,
+            "cells": [
+                [12, 3],
+                [13, 2],
+                [13, 3],
+                [13, 4],
+                [13, 5]
+            ]
+        },
+        {
+            "label": "37",
+            "clue": "Thin, narrow strip of wood fitted into grooves along the edges of boards to lock them together",
+            "length": 6,
+            "cells": [
+                [12, 12],
+                [12, 13],
+                [13, 12],
+                [14, 12],
+                [14, 13],
+                [14, 14]
+            ]
+        },
+        {
+            "label": "38",
+            "clue": "A large group of people who share a collective identity based on common traits",
+            "length": 6,
+            "cells": [
+                [13, 7],
+                [14, 3],
+                [14, 4],
+                [14, 5],
+                [14, 6],
+                [14, 7]
+            ]
+        },
+        {
+            "label": "39",
+            "clue": "A list of available food and drinks",
+            "length": 4,
+            "cells": [
+                [13, 10],
+                [13, 11],
+                [14, 10],
+                [14, 11]
+            ]
+        }
+    ],
+    "solution": [
+        "KINGCOBRAZEBRAS",
+        "DOMINICONCOURSE",
+        "LETINGOVERNMENT",
+        "MONARCHSPACEBAR",
+        "AROMASREARRANGE",
+        "DEBASESBETRAYAL",
+        "PLANETARYCORNEA",
+        "ANTIHERORIBBONS",
+        "ARTISTICENTROPY",
+        "SEVEREHUMILIATE",
+        "ENTREPRENEURROD",
+        "HIDDENAGENDAACT",
+        "CLEANSINGCRISPY",
+        "ARGENTINASMELLS",
+        "ROTATIONGENUINE"
+    ]
+}

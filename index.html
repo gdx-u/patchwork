@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puzzle</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px 32px;
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: #f4f4f2;
+            color: #1a1a1a;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 22px;
+        }
+
+        h2 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 8px 14px;
+            font-size: 14px;
+            border: 1px solid #888;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #eee;
+        }
+
+        #status_el {
+            max-width: 640px;
+            line-height: 1.5;
+        }
+
+        #status_el.error {
+            color: #b00020;
+        }
+
+        #clue_banner {
+            display: block;
+            min-height: 1.5em;
+            margin-bottom: 14px;
+            font-size: 16px;
+        }
+
+        .layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .grid_wrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        #row_labels {
+            padding-top: 3px;
+        }
+
+        .row_label {
+            height: var(--cell_size);
+            line-height: var(--cell_size);
+            width: 22px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 14px;
+            color: #444;
+        }
+
+        #grid_el {
+            display: grid;
+            width: max-content;
+            border: 3px solid #111;
+            background: #fff;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .cell {
+            position: relative;
+            width: var(--cell_size);
+            height: var(--cell_size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #b5b5b5;
+            border-bottom: 1px solid #b5b5b5;
+            background: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .cell .num {
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1;
+            color: #444;
+            pointer-events: none;
+        }
+
+        .cell.thick_right {
+            border-right: 3px solid #111;
+        }
+
+        .cell.thick_bottom {
+            border-bottom: 3px solid #111;
+        }
+
+        .cell.last_col {
+            border-right: none;
+        }
+
+        .cell.last_row {
+            border-bottom: none;
+        }
+
+        .cell.active {
+            background: #dbe9ff;
+        }
+
+        .cell.wrong {
+            background: #ffd2d2;
+            color: #b00020;
+        }
+
+        .cell.selected {
+            background: #ffe27a;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 14px 0 0 28px;
+        }
+
+        #result_el {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .clue_area {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            flex: 1 1 360px;
+            max-width: 760px;
+        }
+
+        .clue_area section {
+            flex: 1 1 280px;
+        }
+
+        .clue_area ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .clue_item {
+            display: flex;
+            gap: 10px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            line-height: 1.35;
+        }
+
+        .clue_item:hover {
+            background: #e9e9e5;
+        }
+
+        .clue_item .label {
+            flex: 0 0 28px;
+            font-weight: 700;
+        }
+
+        .clue_item.related {
+            background: #eef4ff;
+        }
+
+        .clue_item.current {
+            background: #dbe9ff;
+        }
+
+        .clue_item.done .text {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title_el">Puzzle</h1>
+    <p id="status_el">Loading puzzle.json...</p>
+
+    <div id="app" hidden>
+        <span id="clue_banner"></span>
+        <div class="layout">
+            <div>
+                <div class="grid_wrap" id="grid_wrap">
+                    <div id="row_labels"></div>
+                    <div id="grid_el"></div>
+                </div>
+                <div class="actions">
+                    <button type="button" id="check_button">Check</button>
+                    <button type="button" id="clear_button">Clear</button>
+                    <span id="result_el"></span>
+                </div>
+            </div>
+            <div class="clue_area">
+                <section>
+                    <h2>Horizontals</h2>
+                    <ol id="horizontal_list"></ol>
+                </section>
+                <section>
+                    <h2>Patches</h2>
+                    <ol id="patch_list"></ol>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const puzzle_url = 'puzzle.json';
+        const max_size = 200;
+
+        const title_el = document.getElementById('title_el');
+        const status_el = document.getElementById('status_el');
+        const app_el = document.getElementById('app');
+        const clue_banner = document.getElementById('clue_banner');
+        const grid_wrap = document.getElementById('grid_wrap');
+        const row_labels_el = document.getElementById('row_labels');
+        const grid_el = document.getElementById('grid_el');
+        const check_button = document.getElementById('check_button');
+        const clear_button = document.getElementById('clear_button');
+        const result_el = document.getElementById('result_el');
+        const horizontal_list = document.getElementById('horizontal_list');
+        const patch_list = document.getElementById('patch_list');
+
+        let puzzle = null;          // { rows, cols, horizontals, patches, solution }
+        let progress = null;        // { letters, selected, mode }
+        let storage_key = '';
+        let patch_of = [];          // cell index -> index into puzzle.patches, or -1
+        let cell_els = [];
+        let horizontal_els = [];
+        let patch_els = [];
+        let show_wrong = false;
+
+        // ---------- helpers ----------
+
+        function row_label(index) {
+            let label = '';
+            let n = index;
+            while (n >= 0) {
+                label = String.fromCharCode(65 + (n % 26)) + label;
+                n = Math.floor(n / 26) - 1;
+            }
+            return label;
+        }
+
+        function row_of(index) {
+            return Math.floor(index / puzzle.cols);
+        }
+
+        function col_of(index) {
+            return index % puzzle.cols;
+        }
+
+        function hash_text(text) {
+            let hash = 5381;
+            for (let i = 0; i < text.length; i++) {
+                hash = ((hash * 33) ^ text.charCodeAt(i)) >>> 0;
+            }
+            return hash.toString(16);
+        }
+
+        function fail(message) {
+            status_el.textContent = message;
+            status_el.className = 'error';
+            status_el.hidden = false;
+            app_el.hidden = true;
+        }
+
+        // ---------- loading ----------
+
+        function parse_puzzle(data) {
+            if (!data || !Number.isInteger(data.rows) || !Number.isInteger(data.cols)
+                    || data.rows < 1 || data.cols < 1 || data.rows > max_size || data.cols > max_size) {
+                throw new Error('rows and cols must be whole numbers');
+            }
+            const total = data.rows * data.cols;
+            const clean = {
+                title: typeof data.title === 'string' ? data.title : '',
+                rows: data.rows,
+                cols: data.cols,
+                horizontals: [],
+                patches: [],
+                solution: null
+            };
+
+            for (let row = 0; row < data.rows; row++) {
+                const entry = (Array.isArray(data.horizontals) && data.horizontals[row]) || {};
+                clean.horizontals.push({
+                    label: typeof entry.label === 'string' && entry.label ? entry.label : row_label(row),
+                    clue: typeof entry.clue === 'string' ? entry.clue : ''
+                });
+            }
+
+            const owner = new Array(total).fill(-1);
+            const patches = Array.isArray(data.patches) ? data.patches : [];
+            patches.forEach(function (entry, index) {
+                if (!entry || !Array.isArray(entry.cells) || entry.cells.length === 0) {
+                    throw new Error('patch ' + (index + 1) + ' has no cells');
+                }
+                const cells = entry.cells.map(function (pair) {
+                    if (!Array.isArray(pair) || !Number.isInteger(pair[0]) || !Number.isInteger(pair[1])
+                            || pair[0] < 0 || pair[0] >= data.rows || pair[1] < 0 || pair[1] >= data.cols) {
+                        throw new Error('patch ' + (index + 1) + ' has a cell outside the grid');
+                    }
+                    return pair[0] * data.cols + pair[1];
+                });
+                cells.sort(function (a, b) {
+                    return a - b;
+                });
+                cells.forEach(function (cell) {
+                    if (owner[cell] !== -1) {
+                        throw new Error('patches ' + (owner[cell] + 1) + ' and ' + (index + 1) + ' overlap');
+                    }
+                    owner[cell] = index;
+                });
+                clean.patches.push({
+                    label: typeof entry.label === 'string' && entry.label ? entry.label : String(index + 1),
+                    clue: typeof entry.clue === 'string' ? entry.clue : '',
+                    cells: cells
+                });
+            });
+
+            if (Array.isArray(data.solution) && data.solution.length === data.rows
+                    && data.solution.every(function (line) {
+                        return typeof line === 'string' && line.length === data.cols;
+                    })) {
+                clean.solution = data.solution.join('').split('').map(function (ch) {
+                    return /[A-Za-z]/.test(ch) ? ch.toUpperCase() : '';
+                });
+            }
+            return clean;
+        }
+
+        function load_progress() {
+            const total = puzzle.rows * puzzle.cols;
+            const fresh = { letters: new Array(total).fill(''), selected: 0, mode: 'across' };
+            try {
+                const raw = localStorage.getItem(storage_key);
+                if (!raw) {
+                    return fresh;
+                }
+                const data = JSON.parse(raw);
+                if (!Array.isArray(data.letters) || data.letters.length !== total) {
+                    return fresh;
+                }
+                return {
+                    letters: data.letters.map(function (letter) {
+                        return typeof letter === 'string' ? letter.slice(0, 1).toUpperCase() : '';
+                    }),
+                    selected: Number.isInteger(data.selected) && data.selected >= 0 && data.selected < total ? data.selected : 0,
+                    mode: data.mode === 'patch' ? 'patch' : 'across'
+                };
+            } catch (error) {
+                return fresh;
+            }
+        }
+
+        function save_progress() {
+            try {
+                localStorage.setItem(storage_key, JSON.stringify(progress));
+            } catch (error) {
+                // progress just won't persist
+            }
+        }
+
+        async function start() {
+            let data;
+            try {
+                const response = await fetch(puzzle_url, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
+                data = await response.json();
+            } catch (error) {
+                let message = 'Could not load ' + puzzle_url + ' (' + error.message + '). Check it sits in the same folder as this page.';
+                if (location.protocol === 'file:') {
+                    message += ' Browsers block fetch() for pages opened straight from disk, so serve the folder instead, '
+                        + 'for example with "python -m http.server" and open http://localhost:8000/solver.html.';
+                }
+                fail(message);
+                return;
+            }
+
+            try {
+                puzzle = parse_puzzle(data);
+            } catch (error) {
+                fail('puzzle.json is not valid: ' + error.message + '.');
+                return;
+            }
+
+            const shape = JSON.stringify([puzzle.rows, puzzle.cols, puzzle.patches.map(function (patch) {
+                return patch.cells;
+            })]);
+            storage_key = 'puzzle_solver_progress_' + hash_text(shape);
+            progress = load_progress();
+
+            patch_of = new Array(puzzle.rows * puzzle.cols).fill(-1);
+            puzzle.patches.forEach(function (patch, index) {
+                patch.cells.forEach(function (cell) {
+                    patch_of[cell] = index;
+                });
+            });
+
+            document.title = puzzle.title || 'Puzzle';
+            title_el.textContent = puzzle.title || 'Puzzle';
+            status_el.hidden = true;
+            app_el.hidden = false;
+            check_button.hidden = puzzle.solution === null;
+            build_view();
+        }
+
+        // ---------- building the page ----------
+
+        function fit_cell_size() {
+            if (!puzzle) {
+                return;
+            }
+            const available_width = window.innerWidth - 520;
+            const available_height = window.innerHeight - 230;
+            const size = Math.floor(Math.min(available_width / puzzle.cols, available_height / puzzle.rows));
+            const clamped = Math.max(24, Math.min(46, size));
+            grid_wrap.style.setProperty('--cell_size', clamped + 'px');
+            grid_wrap.style.fontSize = Math.round(clamped * 0.55) + 'px';
+        }
+
+        function make_clue_item(kind, index, label, clue, length) {
+            const item = document.createElement('li');
+            item.className = 'clue_item';
+            item.dataset.kind = kind;
+            item.dataset.index = index;
+
+            const label_el = document.createElement('span');
+            label_el.className = 'label';
+            label_el.textContent = label;
+
+            const text_el = document.createElement('span');
+            text_el.className = 'text';
+            text_el.textContent = (clue || '(no clue)') + ' (' + length + ')';
+
+            item.appendChild(label_el);
+            item.appendChild(text_el);
+            item.addEventListener('click', function () {
+                select_clue(kind, index);
+            });
+            return item;
+        }
+
+        function build_view() {
+            grid_el.innerHTML = '';
+            row_labels_el.innerHTML = '';
+            horizontal_list.innerHTML = '';
+            patch_list.innerHTML = '';
+            cell_els = [];
+            horizontal_els = [];
+            patch_els = [];
+
+            grid_el.style.gridTemplateColumns = 'repeat(' + puzzle.cols + ', var(--cell_size))';
+
+            const first_cells = {};
+            puzzle.patches.forEach(function (patch, index) {
+                first_cells[patch.cells[0]] = patch.label;
+            });
+
+            for (let row = 0; row < puzzle.rows; row++) {
+                const label = document.createElement('div');
+                label.className = 'row_label';
+                label.textContent = puzzle.horizontals[row].label;
+                row_labels_el.appendChild(label);
+            }
+
+            const total = puzzle.rows * puzzle.cols;
+            for (let i = 0; i < total; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.dataset.index = i;
+
+                const num = document.createElement('span');
+                num.className = 'num';
+                num.textContent = first_cells[i] || '';
+                const letter = document.createElement('span');
+                letter.className = 'letter';
+
+                cell.appendChild(num);
+                cell.appendChild(letter);
+                grid_el.appendChild(cell);
+                cell_els.push(cell);
+            }
+
+            puzzle.horizontals.forEach(function (entry, row) {
+                const item = make_clue_item('horizontal', row, entry.label, entry.clue, puzzle.cols);
+                horizontal_list.appendChild(item);
+                horizontal_els.push(item);
+            });
+            puzzle.patches.forEach(function (patch, index) {
+                const item = make_clue_item('patch', index, patch.label, patch.clue, patch.cells.length);
+                patch_list.appendChild(item);
+                patch_els.push(item);
+            });
+
+            fit_cell_size();
+            render();
+        }
+
+        // ---------- active clue ----------
+
+        function row_cells(row) {
+            const cells = [];
+            for (let col = 0; col < puzzle.cols; col++) {
+                cells.push(row * puzzle.cols + col);
+            }
+            return cells;
+        }
+
+        function active_cells() {
+            const patch_index = patch_of[progress.selected];
+            if (progress.mode === 'patch' && patch_index >= 0) {
+                return puzzle.patches[patch_index].cells;
+            }
+            return row_cells(row_of(progress.selected));
+        }
+
+        function fix_mode() {
+            if (progress.mode === 'patch' && patch_of[progress.selected] === -1) {
+                progress.mode = 'across';
+            }
+        }
+
+        function toggle_mode() {
+            if (patch_of[progress.selected] >= 0) {
+                progress.mode = progress.mode === 'across' ? 'patch' : 'across';
+            } else {
+                progress.mode = 'across';
+            }
+        }
+
+        function select_clue(kind, index) {
+            const cells = kind === 'horizontal' ? row_cells(index) : puzzle.patches[index].cells;
+            const empty = cells.filter(function (cell) {
+                return progress.letters[cell] === '';
+            });
+            progress.selected = empty.length > 0 ? empty[0] : cells[0];
+            progress.mode = kind === 'horizontal' ? 'across' : 'patch';
+            changed(false);
+        }
+
+        // ---------- rendering ----------
+
+        function is_boundary(a, b) {
+            const patch_a = patch_of[a];
+            const patch_b = patch_of[b];
+            return patch_a !== patch_b && (patch_a >= 0 || patch_b >= 0);
+        }
+
+        function render() {
+            const active = new Set(active_cells());
+            const total = puzzle.rows * puzzle.cols;
+
+            for (let i = 0; i < total; i++) {
+                const classes = ['cell'];
+                if (col_of(i) === puzzle.cols - 1) {
+                    classes.push('last_col');
+                } else if (is_boundary(i, i + 1)) {
+                    classes.push('thick_right');
+                }
+                if (row_of(i) === puzzle.rows - 1) {
+                    classes.push('last_row');
+                } else if (is_boundary(i, i + puzzle.cols)) {
+                    classes.push('thick_bottom');
+                }
+                if (active.has(i)) {
+                    classes.push('active');
+                }
+                const letter = progress.letters[i];
+                if (show_wrong && puzzle.solution && letter && puzzle.solution[i] && letter !== puzzle.solution[i]) {
+                    classes.push('wrong');
+                }
+                if (i === progress.selected) {
+                    classes.push('selected');
+                }
+                const cell = cell_els[i];
+                cell.className = classes.join(' ');
+                const letter_el = cell.lastChild;
+                if (letter_el.textContent !== letter) {
+                    letter_el.textContent = letter;
+                }
+            }
+
+            render_clues();
+            render_result();
+        }
+
+        function render_clues() {
+            const selected_row = row_of(progress.selected);
+            const selected_patch = patch_of[progress.selected];
+            const across_active = progress.mode === 'across' || selected_patch === -1;
+
+            horizontal_els.forEach(function (item, row) {
+                const complete = row_cells(row).every(function (cell) {
+                    return progress.letters[cell] !== '';
+                });
+                let state_class = '';
+                if (row === selected_row) {
+                    state_class = across_active ? ' current' : ' related';
+                }
+                item.className = 'clue_item' + state_class + (complete ? ' done' : '');
+            });
+
+            puzzle.patches.forEach(function (patch, index) {
+                const complete = patch.cells.every(function (cell) {
+                    return progress.letters[cell] !== '';
+                });
+                let state_class = '';
+                if (index === selected_patch) {
+                    state_class = across_active ? ' related' : ' current';
+                }
+                patch_els[index].className = 'clue_item' + state_class + (complete ? ' done' : '');
+            });
+
+            if (across_active) {
+                const entry = puzzle.horizontals[selected_row];
+                clue_banner.textContent = entry.label + ' (horizontal): ' + (entry.clue || '(no clue)') + ' (' + puzzle.cols + ')';
+            } else {
+                const patch = puzzle.patches[selected_patch];
+                clue_banner.textContent = patch.label + ' (patch): ' + (patch.clue || '(no clue)') + ' (' + patch.cells.length + ')';
+            }
+        }
+
+        function is_solved() {
+            if (!puzzle.solution) {
+                return false;
+            }
+            return progress.letters.every(function (letter, index) {
+                return puzzle.solution[index] !== '' && letter === puzzle.solution[index];
+            });
+        }
+
+        function render_result() {
+            if (is_solved()) {
+                result_el.textContent = 'Solved!';
+            } else if (show_wrong) {
+                const wrong = progress.letters.filter(function (letter, index) {
+                    return letter && puzzle.solution[index] && letter !== puzzle.solution[index];
+                }).length;
+                result_el.textContent = wrong === 0 ? 'No mistakes so far.' : wrong + (wrong === 1 ? ' letter is' : ' letters are') + ' wrong.';
+            } else {
+                result_el.textContent = '';
+            }
+        }
+
+        function changed(edited) {
+            if (edited) {
+                show_wrong = false;
+            }
+            fix_mode();
+            save_progress();
+            render();
+        }
+
+        // ---------- input ----------
+
+        grid_el.addEventListener('mousedown', function (event) {
+            if (event.button !== 0 || !event.target.closest) {
+                return;
+            }
+            const cell = event.target.closest('.cell');
+            if (!cell) {
+                return;
+            }
+            event.preventDefault();
+            const index = parseInt(cell.dataset.index, 10);
+            if (index === progress.selected) {
+                toggle_mode();
+            } else {
+                progress.selected = index;
+                progress.mode = 'across';
+            }
+            changed(false);
+        });
+
+        function move_selection(d_row, d_col) {
+            const row = Math.max(0, Math.min(puzzle.rows - 1, row_of(progress.selected) + d_row));
+            const col = Math.max(0, Math.min(puzzle.cols - 1, col_of(progress.selected) + d_col));
+            progress.selected = row * puzzle.cols + col;
+        }
+
+        function type_letter(letter) {
+            const cells = active_cells();
+            const position = cells.indexOf(progress.selected);
+            progress.letters[progress.selected] = letter;
+            if (position !== -1 && position < cells.length - 1) {
+                progress.selected = cells[position + 1];
+            }
+        }
+
+        function backspace() {
+            if (progress.letters[progress.selected] !== '') {
+                progress.letters[progress.selected] = '';
+                return;
+            }
+            const cells = active_cells();
+            const position = cells.indexOf(progress.selected);
+            if (position > 0) {
+                progress.selected = cells[position - 1];
+                progress.letters[progress.selected] = '';
+            }
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (!puzzle || app_el.hidden || event.ctrlKey || event.metaKey || event.altKey) {
+                return;
+            }
+            const key = event.key;
+            let edited = false;
+
+            if (/^[a-zA-Z]$/.test(key)) {
+                type_letter(key.toUpperCase());
+                edited = true;
+            } else if (key === 'Backspace') {
+                backspace();
+                edited = true;
+            } else if (key === 'Delete') {
+                progress.letters[progress.selected] = '';
+                edited = true;
+            } else if (key === ' ' || key === 'Tab') {
+                toggle_mode();
+            } else if (key === 'ArrowUp') {
+                move_selection(-1, 0);
+            } else if (key === 'ArrowDown') {
+                move_selection(1, 0);
+            } else if (key === 'ArrowLeft') {
+                move_selection(0, -1);
+            } else if (key === 'ArrowRight') {
+                move_selection(0, 1);
+            } else {
+                return;
+            }
+
+            event.preventDefault();
+            changed(edited);
+        });
+
+        check_button.addEventListener('click', function () {
+            show_wrong = true;
+            render();
+            check_button.blur();
+        });
+
+        clear_button.addEventListener('click', function () {
+            if (!window.confirm('Clear every letter you have entered?')) {
+                return;
+            }
+            progress.letters = progress.letters.map(function () {
+                return '';
+            });
+            show_wrong = false;
+            changed(true);
+            clear_button.blur();
+        });
+
+        window.addEventListener('resize', fit_cell_size);
+
+        start();
+    </script>
+</body>
+</html>
