@@ -10,7 +10,15 @@ let reading_order = cells => [...cells].sort((a, b) => row_of(a) - row_of(b) || 
 
 let letter_el = cell => cell.querySelector(".letter") ?? cell.appendChild(Object.assign(document.createElement("span"), { className: "letter" }));
 let get_letter = cell => cell.querySelector(".letter")?.textContent ?? "";
-let set_letter = (cell, char) => { letter_el(cell).textContent = char; }
+let set_letter = (cell, char) => { letter_el(cell).textContent = char; check_grid(); }
+
+function check_grid() {
+    let concat = reading_order(document.querySelectorAll(".square")).map(e => e.lastElementChild?.innerText).join("");
+    let correct_concat = puzzle.solution.join("");
+    if (concat == correct_concat) {
+        [...document.querySelectorAll(".letter")].forEach(e => e.classList.add("correct"));
+    }
+}
 
 function highlight_horizontal(letter) {
     clear_highlights();

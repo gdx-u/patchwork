@@ -154,3 +154,10 @@ a {
 a {
     animation: whoosh 2s ease-in-out forwards;
 }
+
+.letter { transform: rotate(0deg); }
+
+.correct {
+    transform: rotate(720deg);
+    transition: transform 750ms ease-in-out;
+}
