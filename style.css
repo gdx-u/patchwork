@@ -127,3 +127,30 @@ body, html {
 }
 
 .mwlb { width: 80vh; text-align: right; }
+
+a {
+    color: black !important;
+    position: absolute;
+    width: 100vw;
+    text-align: right;
+    top: 0;
+    left: 0;
+}
+
+@keyframes whoosh {
+    0% {
+        font-size: 16px;
+    }
+
+    50% {
+        font-size: 48px;
+    }
+
+    100% {
+        font-size: 16px;
+    }
+}
+
+a {
+    animation: whoosh 2s ease-in-out forwards;
+}

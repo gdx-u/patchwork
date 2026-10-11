@@ -1,0 +1,21 @@
+patchworks are more difficult puzzles than standard crosswords! you are in for a challenge.
+instead of across and down clues, there are now spanners and patches.
+
+==> SPANNERS
+spanners are the across clues, but they are all 15 letters long. each clue has two parts. A // B, which clue two entirely different things.
+for example, the clue "happy // sad" could be "DELIGHTEDGLOOMY"
+
+==> PATCHES
+patches are the regions indicated by the bold lines and are always read in standard reading order, no matter how strange that may look.
+for example,
++     +-----+-----+-----+
+   H  |  E     X     A  |
++-----+     +-----+     +
+|  M     P  |  E  |  L  |
++     +-----+     +-----+
+|  E  |  L     O     W   
++-----+     +     +     +
+the indicated patch would be read as EXAMPLE, despite having a gap between the P and the L.
+
+==> DOWN CLUES?
+there are none. the columns will make absolutely nothing when read like down clues.
