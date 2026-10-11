@@ -1,0 +1,420 @@
+{
+    "version": 1,
+    "title": "Patchwork #1",
+    "rows": 13,
+    "cols": 13,
+    "horizontals": [
+        {
+            "label": "A",
+            "clue": "Sing along silently // Act as evidence of something",
+            "length": 13
+        },
+        {
+            "label": "B",
+            "clue": "Went cleanly through // Object used to remove marks made by a pencil",
+            "length": 13
+        },
+        {
+            "label": "C",
+            "clue": "Related to the divine // The final period of training required to qualify as an independent barrister in England and Wales",
+            "length": 13
+        },
+        {
+            "label": "D",
+            "clue": "Related to the devil // Series of sloping beams that make up the framework of a roof",
+            "length": 13
+        },
+        {
+            "label": "E",
+            "clue": "Nicks // People of the Pyrenees, perhaps",
+            "length": 13
+        },
+        {
+            "label": "F",
+            "clue": "Gusto // _____ B, rapper who featured on Girls Like You by Maroon 5",
+            "length": 13
+        },
+        {
+            "label": "G",
+            "clue": "Like matters of the mind // Took notice of",
+            "length": 13
+        },
+        {
+            "label": "H",
+            "clue": "Silver medallist // Breathing due to shock, pain or surprise",
+            "length": 13
+        },
+        {
+            "label": "I",
+            "clue": "In comparison to // The lowest female singing voice",
+            "length": 13
+        },
+        {
+            "label": "J",
+            "clue": "In an anticipatory manner // Stringed instrument pictured on the Guiness logo",
+            "length": 13
+        },
+        {
+            "label": "K",
+            "clue": "Middle brother of the Corleone crime family",
+            "length": 13
+        },
+        {
+            "label": "L",
+            "clue": "Shine // Alec _______, Trump impersonator on SNL",
+            "length": 13
+        },
+        {
+            "label": "M",
+            "clue": "One which causes a light stinging sensation // Inhabitants of the Sahara and Sahel",
+            "length": 13
+        }
+    ],
+    "patches": [
+        {
+            "label": "1",
+            "clue": "More sarcastic",
+            "length": 7,
+            "cells": [
+                [0, 0],
+                [0, 1],
+                [0, 2],
+                [1, 0],
+                [1, 1],
+                [1, 2],
+                [1, 3]
+            ]
+        },
+        {
+            "label": "2",
+            "clue": "In time with one another",
+            "length": 6,
+            "cells": [
+                [0, 3],
+                [0, 4],
+                [0, 5],
+                [1, 4],
+                [1, 5],
+                [1, 6]
+            ]
+        },
+        {
+            "label": "3",
+            "clue": "Baby butterfly",
+            "length": 11,
+            "cells": [
+                [0, 6],
+                [0, 7],
+                [0, 8],
+                [1, 7],
+                [1, 8],
+                [2, 6],
+                [2, 7],
+                [2, 8],
+                [2, 9],
+                [2, 10],
+                [3, 6]
+            ]
+        },
+        {
+            "label": "4",
+            "clue": "Make fun of",
+            "length": 5,
+            "cells": [
+                [0, 9],
+                [0, 10],
+                [1, 9],
+                [1, 10],
+                [1, 11]
+            ]
+        },
+        {
+            "label": "5",
+            "clue": "Adding pressure to",
+            "length": 9,
+            "cells": [
+                [0, 11],
+                [0, 12],
+                [1, 12],
+                [2, 12],
+                [3, 12],
+                [4, 12],
+                [5, 12],
+                [6, 12],
+                [7, 12]
+            ]
+        },
+        {
+            "label": "6",
+            "clue": "Pivots around",
+            "length": 6,
+            "cells": [
+                [2, 0],
+                [3, 0],
+                [4, 0],
+                [5, 0],
+                [6, 0],
+                [7, 0]
+            ]
+        },
+        {
+            "label": "7",
+            "clue": "State capital of Washington",
+            "length": 7,
+            "cells": [
+                [2, 1],
+                [2, 2],
+                [2, 3],
+                [3, 1],
+                [3, 2],
+                [3, 3],
+                [4, 1]
+            ]
+        },
+        {
+            "label": "8",
+            "clue": "Apply pressure to move something away from you",
+            "length": 4,
+            "cells": [
+                [2, 4],
+                [2, 5],
+                [3, 4],
+                [3, 5]
+            ]
+        },
+        {
+            "label": "9",
+            "clue": "Starbucks cup size which holds 16 fl. oz.",
+            "length": 6,
+            "cells": [
+                [2, 11],
+                [3, 11],
+                [4, 10],
+                [4, 11],
+                [5, 11],
+                [6, 11]
+            ]
+        },
+        {
+            "label": "10",
+            "clue": "Emotional support provided following an intense experience",
+            "length": 9,
+            "cells": [
+                [3, 7],
+                [3, 8],
+                [3, 9],
+                [3, 10],
+                [4, 9],
+                [5, 8],
+                [5, 9],
+                [5, 10],
+                [6, 10]
+            ]
+        },
+        {
+            "label": "11",
+            "clue": "\"Congratulations!\"",
+            "length": 5,
+            "cells": [
+                [4, 2],
+                [5, 1],
+                [5, 2],
+                [5, 3],
+                [6, 2]
+            ]
+        },
+        {
+            "label": "12",
+            "clue": "Access to cleanliness",
+            "length": 10,
+            "cells": [
+                [4, 3],
+                [4, 4],
+                [4, 5],
+                [5, 4],
+                [5, 5],
+                [5, 6],
+                [6, 3],
+                [6, 4],
+                [6, 5],
+                [6, 6]
+            ]
+        },
+        {
+            "label": "13",
+            "clue": "Shark's fin on top of their body",
+            "length": 6,
+            "cells": [
+                [4, 6],
+                [4, 7],
+                [4, 8],
+                [5, 7],
+                [6, 7],
+                [6, 8]
+            ]
+        },
+        {
+            "label": "14",
+            "clue": "Simplest form of alcohol",
+            "length": 8,
+            "cells": [
+                [6, 1],
+                [7, 1],
+                [8, 0],
+                [8, 1],
+                [8, 2],
+                [8, 3],
+                [9, 2],
+                [9, 3]
+            ]
+        },
+        {
+            "label": "15",
+            "clue": "Related to the backbone",
+            "length": 6,
+            "cells": [
+                [6, 9],
+                [7, 9],
+                [7, 10],
+                [7, 11],
+                [8, 9],
+                [8, 10]
+            ]
+        },
+        {
+            "label": "16",
+            "clue": "Media where the idea behind the piece is more important than the finished object",
+            "length": 13,
+            "cells": [
+                [7, 2],
+                [7, 3],
+                [7, 4],
+                [8, 4],
+                [9, 4],
+                [9, 5],
+                [9, 6],
+                [10, 5],
+                [10, 6],
+                [10, 7],
+                [11, 7],
+                [12, 6],
+                [12, 7]
+            ]
+        },
+        {
+            "label": "17",
+            "clue": "Dress",
+            "length": 3,
+            "cells": [
+                [7, 5],
+                [8, 5],
+                [8, 6]
+            ]
+        },
+        {
+            "label": "18",
+            "clue": "Stomach bug which, despite its common name, is not at all related to influenza",
+            "length": 10,
+            "cells": [
+                [7, 6],
+                [7, 7],
+                [7, 8],
+                [8, 7],
+                [8, 8],
+                [9, 7],
+                [9, 8],
+                [10, 8],
+                [11, 8],
+                [12, 8]
+            ]
+        },
+        {
+            "label": "19",
+            "clue": "Purposely sabotaging",
+            "length": 10,
+            "cells": [
+                [8, 11],
+                [8, 12],
+                [9, 11],
+                [9, 12],
+                [10, 10],
+                [10, 11],
+                [10, 12],
+                [11, 11],
+                [11, 12],
+                [12, 12]
+            ]
+        },
+        {
+            "label": "20",
+            "clue": "Hinder",
+            "length": 7,
+            "cells": [
+                [9, 0],
+                [9, 1],
+                [10, 0],
+                [10, 1],
+                [10, 2],
+                [10, 3],
+                [11, 3]
+            ]
+        },
+        {
+            "label": "21",
+            "clue": "Physical components of a computer system",
+            "length": 8,
+            "cells": [
+                [9, 9],
+                [9, 10],
+                [10, 9],
+                [11, 9],
+                [11, 10],
+                [12, 9],
+                [12, 10],
+                [12, 11]
+            ]
+        },
+        {
+            "label": "22",
+            "clue": "The highest commonly used clef in music",
+            "length": 6,
+            "cells": [
+                [10, 4],
+                [11, 4],
+                [11, 5],
+                [11, 6],
+                [12, 4],
+                [12, 5]
+            ]
+        },
+        {
+            "label": "23",
+            "clue": "Desperately wanting",
+            "length": 7,
+            "cells": [
+                [11, 0],
+                [11, 1],
+                [11, 2],
+                [12, 0],
+                [12, 1],
+                [12, 2],
+                [12, 3]
+            ]
+        }
+    ],
+    "solution": [
+        "LIPSYNCATTEST",
+        "PIERCEDERASER",
+        "HOLYPUPILLAGE",
+        "IMPISHRAFTERS",
+        "NABSANDORRANS",
+        "GRAVITASCARDI",
+        "EMOTIONALSEEN",
+        "SECONDGASPING",
+        "THANCONTRALTO",
+        "PROLEPTICHARP",
+        "EVENTUALFREDO",
+        "LUSTREBALDWIN",
+        "TINGLERTUAREG"
+    ]
+}
